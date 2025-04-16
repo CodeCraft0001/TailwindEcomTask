@@ -299,19 +299,20 @@ function Home() {
                           <MdShoppingCart className="mt-0.5" />
                           <span>Add to Cart</span>
                         </button>
-                        <div className="flex items-center border border-gray-300 rounded-md overflow-hidden h-7">
+                        <div className="flex justify-center items-center border border-gray-300 rounded-md overflow-hidden mb-2 h-7">
                           <button
                             onClick={() => updateQty(item.id, -1)}
                             className="px-1.5 py-0.5 bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer text-xs"
                           >
                             -
                           </button>
-                          <input
-                            className="w-8 text-center bg-white focus:outline-none text-xs"
+                          {/* <input
+                            className="w-8 text-center bg-red-100 focus:outline-none text-xs"
                             type="number"
                             value={qties[item.id] || 1}
                             readOnly
-                          />
+                          /> */}
+                          <p className='w-8 text-center bg-white focus:outline-none text-xs'>{qties[item.id] || 1}</p>
                           <button
                             onClick={() => handleIncreaseQty(item.id)}
                             className="px-1.5 py-0.5 bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer text-xs"

@@ -4,15 +4,16 @@ import { useAppDispatch, useAppSelector } from '../hooks'
 import { CartItem } from '../redux/cartSlice'
 import CircleCheckbox from '../components/CircleCheckbox'
 import { Tooltip } from '@mui/material'
-import { removefromCart } from '../redux/cartSlice'
-import { updateQuantity } from '../redux/cartSlice'
+import { removefromCart, increaseQty, decreaseQty } from '../redux/cartSlice'
+// import { updateQuantity } from '../redux/cartSlice'
 import { useToast } from '../context/ToastContext'
-import Dropdown from '../components/Dropdown'
+// import Dropdown from '../components/Dropdown'
 // import Slider from 'react-slick'
 import { IoArrowBackOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router'
 // import { FaHeart } from 'react-icons/fa'
 import { RiEmotionSadLine } from "react-icons/ri";
+import '../styles/Scrollbar.css'
 
 
 //Before:
@@ -21,6 +22,7 @@ function Cart() {
     
     // const [value, setValue] = useState<number>(1)
     const [scale, setScale] = useState(1)
+    // const [qties, setQties] = useState<{ [key: number]: number }>({});
 
     useEffect(()=> {
       const interval = setInterval(()=> {
@@ -43,9 +45,23 @@ function Cart() {
         showToast("Removed from Cart !","warning")
     }
     
-    const handleQtyChange=(itemId: number, value: number)=>{
-        dispatch(updateQuantity({id:itemId, quantity: value}))
-    }
+    // const handleIncreaseQty = (id: number) => {
+    //   setQties((prevQties) => ({
+    //     ...prevQties,
+    //     [id]: (prevQties[id] || 1) + 1,
+    //   }));
+    // };
+  
+    // const updateQty = (id: number, value: number) => {
+    //   setQties((prev) => ({
+    //     ...prev,
+    //     [id]: Math.max(1, (prev[id] || 1) + value),
+    //   }));
+    // };
+
+    // const handleQtyChange=(itemId: number, value: number)=>{
+    //     dispatch(updateQuantity({id:itemId, quantity: value}))
+    // }
 
     // const handleCheckboxChange = (id: string, checked: boolean) => {
     //     console.log(`Item ${id} is ${checked ? "selected" : "deselected"}`);
@@ -53,7 +69,7 @@ function Cart() {
     //   };
 
   return (
-    <div className='flex flex-col bg-slate-100 md:flex-row  mx-auto  min-h-screen'>
+    <div className={`flex ${cartItems.length > 0 ? 'flex-col md:flex-row' : 'flex-col'} bg-slate-100 mx-auto min-h-screen`}>
       {/* Left Div: Scrollable Cart Items */}
       {
         cartItems.length === 0 ? (
@@ -74,7 +90,7 @@ function Cart() {
        ( 
         // Non Scrollable
        <div className="w-full m-4 md:w-2/3 pr-0 md:pr-4 mb-4 md:mb-0">
-        <div className="h-[1500px] overflow-y-auto">
+        <div className="h-[100%] overflow-y-auto scrollbar-hide">
           {/* Simulate cart items */}
           <div className="space-y-4">
             {cartItems.map((item: CartItem, index) => (
@@ -116,13 +132,38 @@ function Cart() {
                         </div>
 
                         <div className=' ms-3 w-19 flex flex-col'>
-                                <Dropdown
+                                {/* <Dropdown
                                     min={1}
                                     max={5}
                                     value={item.quantity}
                                     onChange={(value)=> handleQtyChange(item.id, value)}
                                     className='w-12'
-                                />
+                                /> */}
+                                <div className="flex flex-col sm:flex-row items-center justify-center gap-1 w-full">
+  <button 
+    onClick={() => dispatch(increaseQty(item.id))} 
+    className="cursor-pointer bg-gray-50 hover:bg-gray-100 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg transition-colors"
+  >
+    <span className="text-lg font-medium">+</span>
+  </button>
+  
+  <div className="w-16 sm:w-20 flex items-center justify-center">
+    <input 
+      className="w-full h-8 sm:h-10 text-center border border-gray-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-gray-300" 
+      readOnly 
+      value={item.quantity} 
+      type="number" 
+    />
+  </div>
+  
+  <button 
+    onClick={() => dispatch(decreaseQty(item.id))}
+    className="cursor-pointer bg-gray-50 hover:bg-gray-100 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-lg transition-colors"
+  >
+    <span className="text-lg font-medium">-</span>
+  </button>
+</div>
+
                                 {/* <p>Qty: {value}</p> */}
                             <span className='text-left font-bold cursor-pointer hover:underline text-[10px] text-blue-600'>Save for later</span>
                             <span onClick={()=>handleRemoveFrmCart(item)} className='text-left font-bold cursor-pointer hover:underline text-[10px] text-blue-600 mt-1 mb-3'>Remove</span>
