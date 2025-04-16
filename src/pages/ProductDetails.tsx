@@ -18,7 +18,7 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { CiHeart } from "react-icons/ci";
 import { MdShoppingCart } from "react-icons/md";
-import { increaseQty, decreaseQty, addToCart } from '../redux/cartSlice';
+import {  addToCart } from '../redux/cartSlice';
 import { useToast } from '../context/ToastContext';
 
 

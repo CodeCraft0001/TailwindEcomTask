@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import { useState } from 'react'
 // import tailwindcss from '@tailwindcss/vite'
 import Box from '@mui/material/Box';
@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import { useNavigate } from 'react-router';
 import { useToast } from '../context/ToastContext';
 import * as yup from 'yup';
-import {Formik, useFormik} from 'formik'
+// import {Formik, useFormik} from 'formik'
 
 const loginSchema = yup.object().shape({
   email: yup
@@ -23,7 +23,7 @@ function LandngLogin() {
     const [isLogin, setIsLogin] = useState(false)
     const [formData, setFormData] = useState({email: '', password: ''})
     const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
-    const [error, setError] = useState('')
+    // const [error, setError] = useState('')
 
     // const validateEmail = async(email:string)=> {
     //   try {

@@ -1,4 +1,4 @@
-import React,{ useState, useEffect} from 'react'
+import { useState, useEffect} from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks'
 // import { RootState } from '../redux/store'
 import { CartItem } from '../redux/cartSlice'
@@ -8,7 +8,7 @@ import { removefromCart } from '../redux/cartSlice'
 import { updateQuantity } from '../redux/cartSlice'
 import { useToast } from '../context/ToastContext'
 import Dropdown from '../components/Dropdown'
-import Slider from 'react-slick'
+// import Slider from 'react-slick'
 import { IoArrowBackOutline } from "react-icons/io5";
 import { useNavigate } from 'react-router'
 // import { FaHeart } from 'react-icons/fa'
@@ -19,7 +19,7 @@ import { RiEmotionSadLine } from "react-icons/ri";
 
 function Cart() {
     
-    const [value, setValue] = useState<number>(1)
+    // const [value, setValue] = useState<number>(1)
     const [scale, setScale] = useState(1)
 
     useEffect(()=> {

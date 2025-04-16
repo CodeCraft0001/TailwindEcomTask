@@ -16,7 +16,7 @@ import { MdShoppingCart } from "react-icons/md";
 import { useNavigate } from 'react-router';
 // addToCart:
 import { CartItem } from '../redux/cartSlice';
-import { addToCart, increaseQty, decreaseQty } from '../redux/cartSlice';
+import { addToCart } from '../redux/cartSlice';
 import { useToast } from '../context/ToastContext';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -124,7 +124,7 @@ function Home() {
 
   const { showToast } = useToast()
   const dispatch = useAppDispatch()
-  const {loading, product, error} = useAppSelector(state=>state.productSlice)
+  const {loading, product} = useAppSelector(state=>state.productSlice)
   // const product = useSelector((state: RootState) => state.productSlice.product)
 
   // Cart Adding Mechanism:
