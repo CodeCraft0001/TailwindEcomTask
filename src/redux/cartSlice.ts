@@ -19,8 +19,10 @@ interface CartState {
     cartlist: CartItem[]
 }
 
+//(1) Local Storage
+const localData = localStorage.getItem('cartItems');
 const initialState: CartState= {
-    cartlist: [],
+    cartlist: localData ? JSON.parse(localData) :[], //(2)
 }
 
 const cartSlice = createSlice({
@@ -36,9 +38,12 @@ const cartSlice = createSlice({
             else{
                 state.cartlist.push({...action.payload})
             }
+            localStorage.setItem('cartItems', JSON.stringify(state.cartlist)) // (3) and Change other Reducers like this
         },
         removefromCart : (state: CartState, action: PayloadAction<number>)=> {
             state.cartlist = state.cartlist.filter(item => item.id !== action.payload )
+
+            localStorage.setItem('cartItems', JSON.stringify(state.cartlist))
         },
         updateQuantity: (
             state,
@@ -48,12 +53,16 @@ const cartSlice = createSlice({
             if (product) {
               product.quantity = action.payload.quantity;
             }
+
+            localStorage.setItem('cartItems', JSON.stringify(state.cartlist))
           },
           increaseQty: (state, action: PayloadAction<number>) => {
             const existingProduct = state.cartlist.find(item => item.id === action.payload);
             if (existingProduct) {
               existingProduct.quantity += 1;
             }
+
+            localStorage.setItem('cartItems', JSON.stringify(state.cartlist))
           },
           decreaseQty: (state, action: PayloadAction<number>) => {
             const existingProduct = state.cartlist.find(item => item.id === action.payload);
@@ -65,6 +74,8 @@ const cartSlice = createSlice({
                 existingProduct.quantity -= 1;
               }
             }
+
+            localStorage.setItem('cartItems', JSON.stringify(state.cartlist))
           }
           
     },

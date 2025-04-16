@@ -17,7 +17,9 @@ import { LuShoppingCart } from 'react-icons/lu';
 import { useAppSelector } from '../hooks';
 import Badge from './Badge';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = [{ label: 'Home', path: '/home' },
+  { label: 'Cart', path: '/cart' },
+  { label: 'Blog', path: '/blog' } ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header() {
@@ -35,7 +37,13 @@ function Header() {
     navigate('/cart');
   };
 
+  const handleCloseMObNavMenu=(path: string)=>{
+    navigate(path)
+    handleCloseNavMenu()
+  }
+
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    // navigate()
     setAnchorElNav(event.currentTarget);
   };
 
@@ -46,6 +54,7 @@ function Header() {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -101,9 +110,10 @@ function Header() {
               onClose={handleCloseNavMenu}
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
+              {/* Mobile */}
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>{page}</Typography>
+                <MenuItem key={page.label} onClick={()=>handleCloseMObNavMenu(page.path)}>
+                  <Typography sx={{ textAlign: 'center' }}>{page.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -132,11 +142,11 @@ function Header() {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.label}
+                onClick={()=> navigate(page.path)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.label}
               </Button>
             ))}
           </Box>
