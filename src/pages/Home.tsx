@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -133,25 +132,64 @@ function Home() {
   return (
     <div className="p-2 min-h-screen">
       <div className="flex flex-col lg:flex-row gap-3 p-2 justify-center items-center max-w-6xl mx-auto">
-        <div className="flex-shrink-0 w-full md:w-auto flex justify-center">
-          <Card sx={{ maxWidth: { xs: 260, sm: 360, md: 395 }, width: '100%' }}>
-            <CardActionArea>
+      <div className="flex-shrink-0 w-full md:w-auto flex justify-center">
+          <Card
+            sx={{
+              width: { xs: '90%', sm: '100%' },
+              maxWidth: { xs: 360, sm: 360, md: 395 },
+              mx: { xs: 'auto', sm: 0 },
+              display: 'flex',
+              flexDirection: { xs: 'row', sm: 'column' },
+              overflow: 'hidden',
+              alignItems: { xs: 'center', sm: 'stretch' },
+            }}
+          >
+            <div className="relative sm:mb-[-20px]">
               <CardMedia
-                sx={{ height: { xs: 180, sm: 260, md: 300 } }}
+                sx={{
+                  width: { xs: 140, sm: '100%' },
+                  height: { xs: 140, sm: 260, md: 300 },
+                  flexShrink: 0,
+                }}
                 component="img"
-                image="https://files.oaiusercontent.com/file-NEJooCgjqSkzhtzj7nBQ2D?se=2025-04-09T06%3A05%3A29Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D13428f55-18e5-4590-8f29-d38a3b522db8.webp&sig=TP1gvDsPPW0OFVlElsU5idVnBfKUR/ji4simHL93uis%3D"
+                image="https://files.oaiusercontent.com/file-R5pdQoaDD4zXwDmDke3Rfs?se=2025-04-16T06%3A57%3A25Z&sp=r&sv=2024-08-04&sr=b&rscc=max-age%3D604800%2C%20immutable%2C%20private&rscd=attachment%3B%20filename%3D4fbf5fe6-55e6-40b8-a04c-ac33e113306b.webp&sig=EMD9t1ZqlFM/dBQgUfCY/zvNRmrDNMMNBsubB9M6PLw%3D"
                 alt="green iguana"
                 className="object-cover"
               />
-              <CardContent>
-                <Typography gutterBottom variant="h6" component="div">
-                  <span className="text-amber-600">Your Style, Delivered Fast!</span>
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  We promise our deals are almost as addictive as our puns. Almost.
-                </Typography>
-              </CardContent>
-            </CardActionArea>
+              <div
+                className="hidden sm:block absolute bottom-0 left-0 right-0 h-[59px]"
+                style={{
+                  background: 'linear-gradient(to bottom, transparent, rgb(255, 255, 255))',
+                }}
+              />
+            </div>
+            <CardContent
+              sx={{
+                flex: 1,
+                p: { xs: 1, sm: 2 },
+                background: {
+                  sm: 'linear-gradient(to top, rgba(255,255,255,0.5), #ffffff)',
+                },
+                position: { sm: 'relative' },
+                zIndex: { sm: 1 },
+              }}
+            >
+              <Typography
+                gutterBottom
+                variant="h6"
+                component="div"
+                sx={{ fontSize: { xs: '0.9rem', sm: '1.1rem' } }}
+              >
+                <span className="text-amber-600">Your Style, Delivered Fast!</span>
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ fontSize: { xs: '0.8rem', sm: '0.875rem' } }}
+              >
+                We promise our deals are almost as addictive as our puns. Almost.
+              </Typography>
+            </CardContent>
           </Card>
         </div>
         <div className="w-full md:w-2/3 max-w-xl">
@@ -167,7 +205,7 @@ function Home() {
             <div className="p-1">
               <img
                 style={{ width: '100%', maxWidth: '360px' }}
-                src="https://plus.unsplash.com/premium_vector-1725973825187-d80d12a03bdc?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHNob3BwaW5nfGVufDB8fDB8fHww"
+                src="https://plus.unsplash.com/premium_vector-1725973825187-d80d12a03bdc?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHNob3BpaW5nfGVufDB8fDB8fHww"
                 alt="Slide 2"
                 className="h-56 object-cover mx-auto"
               />
@@ -191,74 +229,100 @@ function Home() {
               <Card
                 key={item.id}
                 sx={{
-                  maxWidth: { xs: 240, sm: 280, md: 320, lg: 345 },
-                  width: '100%',
+                  width: { xs: '90%', sm: '100%' },
+                  maxWidth: { xs: 360, sm: 280, md: 320, lg: 345 },
+                  mx: { xs: 'auto', sm: 0 },
                   display: 'flex',
-                  flexDirection: 'column',
+                  flexDirection: { xs: 'row', sm: 'column' },
+                  alignItems: { xs: 'center', sm: 'stretch' },
                 }}
-                className="flex flex-col"
+                className="flex"
               >
-                <CardActionArea>
+                <CardActionArea
+                  sx={{
+                    display: 'flex',
+                    flexDirection: { xs: 'row', sm: 'column' },
+                    alignItems: { xs: 'center', sm: 'stretch' },
+                    width: { xs: '40%', sm: '100%' },
+                  }}
+                  onClick={() => navigate(`/product/${item.id}`)}
+                >
                   <CardMedia
-                    onClick={() => navigate(`/product/${item.id}`)}
-                    sx={{ height: { xs: 160, sm: 200, md: 250 } }}
+                    sx={{
+                      width: { xs: 120, sm: '100%' },
+                      height: { xs: 120, sm: 200, md: 250 },
+                      flexShrink: 0,
+                    }}
                     component="img"
                     image={item.thumbnail}
                     alt={item.title}
                     className="object-cover"
                   />
-                  <CardContent>
-                    <Typography gutterBottom variant="h6" component="div">
+                </CardActionArea>
+                <div className="flex flex-col flex-1 p-2 sm:p-0">
+                  <CardContent sx={{ p: { xs: 1, sm: 2 }, flex: 1 }}>
+                    <Typography
+                      gutterBottom
+                      variant="h6"
+                      component="div"
+                      sx={{ fontSize: { xs: '0.9rem', sm: '1.1rem' } }}
+                    >
                       <Tooltip title={item.title} placement="top-end">
-                        <p className="truncate max-w-[220px] text-sm">{item.title}</p>
+                        <p className="truncate max-w-[220px]">{item.title}</p>
                       </Tooltip>
                     </Typography>
-                    <Typography variant="body1">
-                      <p className="font-semibold text-sm">${item.price}</p>
+                    <Typography
+                      variant="body1"
+                      sx={{ fontSize: { xs: '0.9rem', sm: '1rem' } }}
+                    >
+                      <p className="font-semibold">${item.price}</p>
                     </Typography>
                   </CardContent>
-                </CardActionArea>
-                <CardActions className="h-12 flex items-center justify-center px-2 mt-auto">
-                  {isInCart ? (
-                    <div className="w-full flex items-center justify-center h-full">
-                      <div className="text-green-700 flex items-center gap-1 text-xs font-bold">
-                        <TiTick />
-                        <p>Added</p>
+                  <CardActions
+                    className="flex items-center justify-between px-2 py-1 sm:h-12 sm:justify-center sm:mt-auto"
+                    sx={{ flexDirection: { xs: 'row', sm: 'column' } }}
+                  >
+                    {isInCart ? (
+                      <div className="w-full flex items-center justify-center">
+                        <div className="text-green-700 flex items-center gap-1 text-xs font-bold">
+                          <TiTick />
+                          <p>Added</p>
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col sm:flex-row sm:justify-between justify-center items-center w-full gap-1.5">
-                      <button
-                        onClick={(e) => handleAddToCart(e, item)}
-                        className="text-blue-800 font-bold text-xs flex gap-1 cursor-pointer whitespace-nowrap"
-                        role="button"
-                      >
-                        <MdShoppingCart className="mt-0.5" />
-                        <span>Add to Cart</span>
-                      </button>
-                      <div className="flex items-center border border-gray-300 rounded-md overflow-hidden h-7">
+                    ) : (
+                      <div className="flex items-center justify-between w-full gap-1.5 sm:flex-col sm:gap-2">
                         <button
-                          onClick={() => updateQty(item.id, -1)}
-                          className="px-1.5 py-0.5 bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer text-xs"
+                          onClick={(e) => handleAddToCart(e, item)}
+                          className="text-blue-800 font-bold text-xs flex gap-1 cursor-pointer whitespace-nowrap"
+                          role="button"
                         >
-                          -
+                          <MdShoppingCart className="mt-0.5" />
+                          <span>Add to Cart</span>
                         </button>
-                        <input
-                          className="w-8 text-center bg-white focus:outline-none text-xs"
-                          type="number"
-                          value={qties[item.id] || 1}
-                          readOnly
-                        />
-                        <button
-                          onClick={() => handleIncreaseQty(item.id)}
-                          className="px-1.5 py-0.5 bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer text-xs"
-                        >
-                          +
-                        </button>
+                        <div className="flex items-center border border-gray-300 rounded-md overflow-hidden h-7">
+                          <button
+                            onClick={() => updateQty(item.id, -1)}
+                            className="px-1.5 py-0.5 bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer text-xs"
+                          >
+                            -
+                          </button>
+                          <input
+                            className="w-8 text-center bg-white focus:outline-none text-xs"
+                            type="number"
+                            value={qties[item.id] || 1}
+                            readOnly
+                          />
+                          <button
+                            onClick={() => handleIncreaseQty(item.id)}
+                            className="px-1.5 py-0.5 bg-gray-100 hover:bg-gray-200 transition-colors cursor-pointer text-xs"
+                          >
+                            +
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </CardActions>
+                    )}
+                  </CardActions>
+                </div>
               </Card>
             );
           })
