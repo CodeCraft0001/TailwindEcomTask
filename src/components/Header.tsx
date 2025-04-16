@@ -19,7 +19,7 @@ import Badge from './Badge';
 
 const pages = [{ label: 'Home', path: '/home' },
   { label: 'Cart', path: '/cart' },
-  { label: 'Blog', path: '/blog' } ];
+  { label: 'Blog', path: '/home' } ];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header() {
